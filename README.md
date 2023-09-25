@@ -6,8 +6,8 @@ Este repositorio contiene el código fuente para el Desafío Code Challenge de D
 
 - Backend implementado en PHP, utilizando programación orientada a objetos (POO).
 - Almacenamiento de datos en una base de datos MySQL.
-- Interfaz de usuario desarrollada con React.js para una experiencia interactiva o Laravel Blade Templates para una experiencia más tradicional.
-- Uso de CSS/Sass para el diseño y Bootstrap como framework de diseño.
+- Interfaz de usuario desarrollada con React.js para una experiencia interactiva.
+- Uso de CSS para el diseño y Bootstrap como framework de diseño.
 - Gestión del código fuente mediante control de versiones Git, con seguimiento regular y descripciones detalladas de los commits.
 - Configuración de Docker para facilitar la instalación y ejecución de la aplicación en contenedores.
 
