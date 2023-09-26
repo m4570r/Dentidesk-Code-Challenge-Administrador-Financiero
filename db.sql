@@ -23,3 +23,14 @@ VALUES
     ('Venta de objetos usados', 300000.00, 'ingreso', '2023-09-15'),
     ('Cuenta de luz', -50000.00, 'egreso', '2023-09-20'),
     ('Pago de Credito', -200000.00, 'egreso', '2023-09-25');
+	
+	
+CREATE TABLE monthly_profit (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    month DATE UNIQUE NOT NULL,
+    total_profit DECIMAL(10, 2) DEFAULT 0.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+

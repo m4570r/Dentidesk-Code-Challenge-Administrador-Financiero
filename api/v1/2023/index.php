@@ -69,35 +69,44 @@ class API {
                         $result = $this->transactionController->getAllTransactions();
                         echo $result;
                     }
-                } elseif ( $requestMethod === 'POST' && isset( $_GET[ 'addTransactions' ] ) ) {
+            } elseif ( $requestMethod === 'POST' && isset( $_GET[ 'addTransactions' ] ) ) {
                     // POST /index.php?comando=transactions&addTransactions
                     $data = json_decode( file_get_contents( 'php://input' ), true );
                     $result = $this->transactionController->addTransaction( $data );
 
                     echo $result;
 
-                } elseif ( $requestMethod === 'PUT' && isset( $_GET[ 'updateTransactions' ] ) ) {
-                    // PUT /index.php?comando=transactions&updateTransactions
-                    $data = json_decode( file_get_contents( 'php://input' ), true );
-                    $transactionId = $data[ 'id' ];
-                    $result = $this->transactionController->updateTransaction( $transactionId, $data );
-                    echo $result;
-                } elseif ( $requestMethod === 'DELETE' && isset( $_GET[ 'deleteTransactions' ] ) ) {
+            } elseif ($requestMethod === 'PUT' && isset($_GET['updateTransactions'])) {
+					// PUT /index.php?comando=transactions&updateTransactions
+					$data = json_decode(file_get_contents('php://input'), true);
+
+					if (isset($data['id'])) {
+						$transactionId = $data['id'];
+						$result = $this->transactionController->updateTransaction($transactionId, $data);
+						echo $result;
+					} else {
+						// Manejar el caso en el que 'id' está ausente en $data
+						$response = [
+							"error" => "Se requiere un ID en el payload para actualizar la transacción."
+						];
+						echo json_encode($response, JSON_PRETTY_PRINT);
+					}
+			} elseif ( $requestMethod === 'DELETE' && isset( $_GET[ 'deleteTransactions' ] ) ) {
                     // DELETE /index.php?comando=transactions&deleteTransactions
                     $data = json_decode( file_get_contents( 'php://input' ), true );
                     $transactionId = $data[ 'id' ];
                     $result = $this->transactionController->deleteTransaction( $transactionId );
                     echo $result;
-                }
+            }
 
                 break;
 
-                case 'version':
+            case 'version':
                 // GET muestra la version
                 echo 'version';
                 break;
 
-                default:
+            default:
                 // Comando no válido
                 echo 'Comando no válido';
                 break;
