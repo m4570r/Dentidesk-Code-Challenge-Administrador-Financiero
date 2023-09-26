@@ -1,7 +1,10 @@
 <?php
+// Incluye los modulos necesarios
+require_once(__DIR__ . '/module/connect.php');
+require_once(__DIR__ . '/module/connect.php');
 
-// Incluye el controlador TransactionController
-require_once( 'controllers/transactionController.php' );
+// Incluye los controladores necesarios
+require_once(__DIR__ . '/controllers/transactionController.php');
 
 // Instancia el controlador TransactionController
 $transactionController = new TransactionController();
@@ -10,101 +13,95 @@ class API {
     private $db;
     private $transactionController;
 
-    public function __construct() {
-        // Establece la conexión a la base de datos ( Asegúrate de configurar tus datos de conexión )
-        $host = 'localhost';
-        $dbname = 'codechallenge';
-        $username = 'root';
-        $password = '';
+	public function __construct() {
+        // Utiliza la conexión a la base de datos desde connect.php
+        global $db;
 
-        try {
-            $this->db = new PDO( "mysql:host=$host;dbname=$dbname", $username, $password );
-            $this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-
-            // Instancia el controlador TransactionController
-            $this->transactionController = new TransactionController( $this->db );
-        } catch ( PDOException $e ) {
-            die( 'Error en la conexión a la base de datos: ' . $e->getMessage() );
+        if (!isset($db)) {
+            die("Error: La conexión a la base de datos no está configurada.");
         }
+
+        $this->db = $db;
+
+        // Instancia el controlador TransactionController
+        $this->transactionController = new TransactionController($this->db);
     }
 
     public function handleRequest() {
-        $requestMethod = $_SERVER[ 'REQUEST_METHOD' ];
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
 
         // Verifica si el parámetro 'comando' está presente en la URL
-        $comando = isset( $_GET[ 'comando' ] ) ? $_GET[ 'comando' ] : '';
+        $comando = isset($_GET['comando']) ? $_GET['comando'] : '';
 
-        if ( $comando === 'transactions' ) {
-            if ( $requestMethod === 'GET' ) {
-                // GET /index.php?comando = transactions
-                // Lógica para buscar todos los registros
-                if ( isset( $_GET[ 'id' ] ) ) {
-                    // GET /index.php?comando=transactions&id={numero id}
-                    // Lógica para buscar registros por id
-                    //$transactionId = $_GET[ 'id' ];
-                    //echo $this->transactionController->getTransactionById( $transactionId );
+        switch ($comando) {
+            case 'transactions':
+                if ($requestMethod === 'GET') {
+					// Almacenando los parametros de la URL en variables
+                    $id 			= isset($_GET['id']) ? $_GET['id'] : null;
+                    $description 	= isset($_GET['description']) ? $_GET['description'] : null;
+                    $amount 		= isset($_GET['amount']) ? $_GET['amount'] : null;
+                    $type 			= isset($_GET['type']) ? $_GET['type'] : null;
+                    $dateInicio 	= isset($_GET['dateInicio']) ? $_GET['dateInicio'] : null;
+                    $dateFinal 		= isset($_GET['dateFinal']) ? $_GET['dateFinal'] : null;
 
-                    echo 'por id';
-                } elseif ( isset( $_GET[ 'description' ] ) ) {
-                    // GET /index.php?comando=transactions&description={descripcion}
-                    // Lógica para buscar registros por descripción
-                    //$description = $_GET[ 'description' ];
-                    //echo $this->transactionController->getTransactionsByDescription( $description );
-
-                    echo 'descripcion';
-                } elseif ( isset( $_GET[ 'amount' ] ) ) {
-                    // GET /index.php?comando=transactions&amount={monto a buscar}
-                    // Lógica para buscar registros por monto
-                    //$amount = $_GET[ 'amount' ];
-                    //echo $this->transactionController->getTransactionsByAmount( $amount );
-
-                    echo 'amount';
-                } elseif ( isset( $_GET[ 'type' ] ) ) {
-                    // GET /index.php?comando=transactions&type={tipo a buscar}
-                    // Lógica para buscar registros por tipo
-                    //$type = $_GET[ 'type' ];
-                    //echo $this->transactionController->getTransactionsByType( $type );
-
-                    echo 'type';
-                } elseif ( isset( $_GET[ 'dateInicio' ] ) && isset( $_GET[ 'dateFinal' ] ) ) {
-                    // GET /index.php?comando=transactions&dateInicio={fecha de inicio}&dateFinal={fecha final}
-                        // Lógica para buscar registros por rango de fechas
-                        //$dateInicio = $_GET[ 'dateInicio' ];
-                        //$dateFinal = $_GET[ 'dateFinal' ];
-                        //echo $this->transactionController->getTransactionsByDateRange( $dateInicio, $dateFinal );
-
-                        echo 'por fecha';
+                    if (!is_null($id)) {
+						// GET /index.php?comando=transactions&id={1}
+						$result = $this->transactionController->getTransactionById($id);
+						echo $result;
+                    } elseif (!is_null($description)) {
+						// GET /index.php?comando=transactions&description={descripcion a buscar}
+						$result = $this->transactionController->getTransactionsByDescription($description);
+						echo $result;
+                    } elseif (!is_null($amount)) {
+						// GET /index.php?comando=transactions&amount={monto a buscar}
+						$result = $this->transactionController->getTransactionsByAmount($amount);
+						echo $result;
+                    } elseif (!is_null($type)) {
+						// GET /index.php?comando=transactions&type={tipo a buscar}
+                        $result = $this->transactionController->getTransactionsByType($type);
+						echo $result;
+                    } elseif (!is_null($dateInicio) && !is_null($dateFinal)) {
+						// GET index.php?comando=transactions&dateInicio={fecha de inicio}&dateFinal={fecha final}
+                        $result = $this->transactionController->getTransactionsByDateRange($dateInicio, $dateFinal);
+						echo $result;
                     } else {
-                        // GET /index.php?comando = transactions
-                        // Lógica para buscar todos los registros
-                        //echo $this->transactionController->getAllTransactions();
-                        echo 'todas las transacciones';
+						// GET /index.php?comando=transactions
+                        $result = $this->transactionController->getAllTransactions();
+						echo $result;
                     }
-                } elseif ( $requestMethod === 'POST' ) {
-                    // POST /index.php?comando = transactions
-                    // Lógica para agregar registros
-                    //$data = json_decode( file_get_contents( 'php://input' ), true );
-                    //echo $this->transactionController->createTransaction( $data );
+                } elseif ($requestMethod === 'POST' && isset($_GET['addTransactions'])) {
+					// POST /index.php?comando=transactions&addTransactions
+					$data = json_decode(file_get_contents('php://input'), true);
+					$result = $this->transactionController->addTransaction($data);  
+					echo $result; 
+				} elseif ($requestMethod === 'PUT' && isset($_GET['updateTransactions'])) {
+					// PUT /index.php?comando=transactions&updateTransactions
+					$data = json_decode(file_get_contents('php://input'), true);
+					$transactionId = $data['id'];
+					$result = $this->transactionController->updateTransaction($transactionId, $data);
+					echo $result;
+				} elseif ($requestMethod === 'DELETE' && isset($_GET['deleteTransactions'])) {
+					// DELETE /index.php?comando=transactions&deleteTransactions
+					$data = json_decode(file_get_contents('php://input'), true);
+					$transactionId = $data['id'];
+					$result = $this->transactionController->deleteTransaction($transactionId);
+					echo $result;
+				}
 
-                    echo 'solicitudes POST';
-                } elseif ( $requestMethod === 'PUT' ) {
-                    // PUT /index.php?comando = transactions
-                    // Lógica para actualizar registros
-                    //$data = json_decode( file_get_contents( 'php://input' ), true );
-                    //echo $this->transactionController->updateTransaction( $data );
+                break;
 
-                    echo 'solicitudes PUT';
-                } elseif ( $requestMethod === 'DELETE' ) {
-                    // DELETE /index.php?comando = transactions
-                    // Lógica para eliminar registros
-                    //$data = json_decode( file_get_contents( 'php://input' ), true );
-                    //echo $this->transactionController->deleteTransaction( $data );
+            case 'version':
+				// GET muestra la version
+                echo "version";
+                break;
 
-                    echo 'Solicitudes DELETE';
-                }
-            }
+            default:
+                // Comando no válido
+                echo 'Comando no válido';
+                break;
         }
     }
+}
 
 // Crear una instancia de la clase API y manejar la solicitud
 $api = new API();

@@ -1,112 +1,115 @@
 <?php
 
+require_once(__DIR__ . '/../module/connect.php');
+
 class TransactionController
 {
     private $db;
 
     public function __construct()
     {
-        // Configura la conexión a la base de datos usando PDO
-        $host = 'localhost';
-        $db_name = 'codechallenge';
-        $username = 'root';
-        $password = '';
+        // Utiliza la conexión a la base de datos desde connect.php
+        global $db;
 
-        try {
-            $this->db = new PDO("mysql:host={$host};dbname={$db_name}", $username, $password);
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die("Error de conexión: " . $e->getMessage());
+        if (!isset($db)) {
+            die("Error: La conexión a la base de datos no está configurada.");
         }
+
+        $this->db = $db;
     }
 
-    public function getAllTransactions($filter = [])
+    // Función para obtener todos los registros de transacciones
+    public function getAllTransactions()
     {
-        try {
-            $sql = "SELECT * FROM transactions";
-
-            if (!empty($filter)) {
-                $conditions = [];
-
-                if (isset($filter['description'])) {
-                    $conditions[] = "description LIKE '%" . $filter['description'] . "%'";
-                }
-
-                if (isset($filter['amount'])) {
-                    $conditions[] = "amount = " . $filter['amount'];
-                }
-
-                if (isset($filter['type'])) {
-                    $conditions[] = "type = '" . $filter['type'] . "'";
-                }
-
-                if (isset($filter['date'])) {
-                    $conditions[] = "date = '" . $filter['date'] . "'";
-                }
-
-                $sql .= " WHERE " . implode(" AND ", $conditions);
-            }
-
-            $stmt = $this->db->query($sql);
-            $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return json_encode($transactions);
-        } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
-        }
+        // Implementa la lógica para obtener todos los registros de transacciones
+		echo "imprimir todos los registros";
     }
 
-    public function getTransactionById($id)
+    // Función para obtener una transacción por su ID
+    public function getTransactionById($transactionId)
     {
-        try {
-            $sql = "SELECT * FROM transactions WHERE id = :id";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-            $transaction = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            return json_encode($transaction);
-        } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
-        }
+        // Implementa la lógica para obtener una transacción por su ID
+		echo "imprimir registros por id";
     }
 
-    public function createTransaction($data)
+    // Función para buscar transacciones por descripción
+    public function getTransactionsByDescription($description)
     {
-        try {
-            // Valida y procesa los datos recibidos en $data
-            // Luego, inserta la nueva transacción en la base de datos
-            // Retorna la nueva transacción como JSON en la respuesta
-        } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
-        }
+        // Implementa la lógica para buscar transacciones por descripción
+		echo "Imprimir registros por descripcion";
     }
 
-    public function updateTransaction($id, $data)
+    // Función para buscar transacciones por monto
+    public function getTransactionsByAmount($amount)
     {
-        try {
-            // Valida y procesa los datos recibidos en $data
-            // Luego, actualiza la transacción con el ID dado en la base de datos
-            // Retorna la transacción actualizada como JSON en la respuesta
-        } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
-        }
+        // Implementa la lógica para buscar transacciones por monto
+		echo "Imprimir registros por monto";
     }
 
-    public function deleteTransaction($id)
+    // Función para buscar transacciones por tipo
+    public function getTransactionsByType($type)
     {
-        try {
-            $sql = "DELETE FROM transactions WHERE id = :id";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-
-            $response = ['message' => 'Transacción eliminada con éxito'];
-            return json_encode($response);
-        } catch (PDOException $e) {
-            die("Error: " . $e->getMessage());
-        }
+        // Implementa la lógica para buscar transacciones por tipo
+		echo "Imprimir registros por tipo";
     }
+
+    // Función para buscar transacciones por rango de fechas
+    public function getTransactionsByDateRange($dateInicio, $dateFinal)
+    {
+        // Implementa la lógica para buscar transacciones por rango de fechas
+		echo "Imprimir registros por fechas";
+    }
+
+	public function addTransaction($data)
+	{
+		// Mostrar los valores recibidos
+		$descripcion = $data['descripcion'];
+		$monto = $data['monto'];
+		$tipo = $data['tipo'];
+		$date = $data['date'];
+		
+		// Construir un arreglo con los valores
+		$result = [
+			"descripcion" => $descripcion,
+			"monto" => $monto,
+			"tipo" => $tipo,
+			"date" => $date
+		];
+
+		// Construir la respuesta JSON
+		echo json_encode($result, JSON_PRETTY_PRINT); // Muestra la respuesta JSON
+	}
+
+	// Función para actualizar una transacción existente
+	public function updateTransaction($transactionId, $data)
+	{
+		// Ejemplo de actualización de datos
+		$descripcion = $data['descripcion'];
+		$monto = $data['monto'];
+		$tipo = $data['tipo'];
+		$date = $data['date'];
+
+		// Construir la respuesta JSON
+		$response = [
+			"id" => $transactionId, // Usar $transactionId en lugar de $id
+			"descripcion" => $descripcion,
+			"monto" => $monto,
+			"tipo" => $tipo,
+			"date" => $date
+		];
+
+		return json_encode($response, JSON_PRETTY_PRINT); // Devuelve la respuesta JSON
+	}
+
+    // Función para eliminar una transacción por su ID
+	public function deleteTransaction($transactionId)
+	{
+		// Construir la respuesta JSON
+		$response = [
+			"id" => $transactionId
+		];
+
+		return json_encode($response, JSON_PRETTY_PRINT); // Devuelve la respuesta JSON
+	}
+
 }
-
-?>
