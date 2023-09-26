@@ -37,12 +37,12 @@ class API {
             case 'transactions':
             if ( $requestMethod === 'GET' ) {
                 // Almacenando los parametros de la URL en variables
-                $id 			 = isset( $_GET[ 'id' ] ) ? $_GET[ 'id' ] : null;
+                $id 		= isset( $_GET[ 'id' ] ) ? $_GET[ 'id' ] : null;
                 $description 	 = isset( $_GET[ 'description' ] ) ? $_GET[ 'description' ] : null;
-                $amount 		 = isset( $_GET[ 'amount' ] ) ? $_GET[ 'amount' ] : null;
-                $type 			 = isset( $_GET[ 'type' ] ) ? $_GET[ 'type' ] : null;
+                $amount 	= isset( $_GET[ 'amount' ] ) ? $_GET[ 'amount' ] : null;
+                $type 		= isset( $_GET[ 'type' ] ) ? $_GET[ 'type' ] : null;
                 $dateInicio 	 = isset( $_GET[ 'dateInicio' ] ) ? $_GET[ 'dateInicio' ] : null;
-                $dateFinal 		 = isset( $_GET[ 'dateFinal' ] ) ? $_GET[ 'dateFinal' ] : null;
+                $dateFinal 	= isset( $_GET[ 'dateFinal' ] ) ? $_GET[ 'dateFinal' ] : null;
 
                 if ( !is_null( $id ) ) {
                     // GET /index.php?comando=transactions&id={1}
