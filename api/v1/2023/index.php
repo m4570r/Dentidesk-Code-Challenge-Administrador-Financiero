@@ -1,4 +1,21 @@
 <?php
+// Establecer las cabeceras CORS para permitir el acceso desde cualquier origen
+header("Access-Control-Allow-Origin: *");
+
+// Opcionalmente, puedes especificar métodos HTTP permitidos
+// header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+
+// Opcionalmente, puedes especificar encabezados personalizados permitidos
+// header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Verificar el método de solicitud (GET, POST, etc.) si es necesario
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // La solicitud es una pre-solicitud (preflight) CORS, por lo que solo respondemos con las cabeceras CORS y no con contenido.
+    header('HTTP/1.1 204 No Content');
+    header("Access-Control-Allow-Origin: *");
+    // Opcionalmente, puedes especificar métodos HTTP permitidos y encabezados personalizados aquí.
+    exit;
+}
 // Incluye los modulos necesarios
 require_once( __DIR__ . '/module/connect.php' );
 require_once( __DIR__ . '/module/connect.php' );
@@ -43,6 +60,8 @@ class API {
                 $type 		= isset( $_GET[ 'type' ] ) ? $_GET[ 'type' ] : null;
                 $dateInicio 	= isset( $_GET[ 'dateInicio' ] ) ? $_GET[ 'dateInicio' ] : null;
                 $dateFinal 	= isset( $_GET[ 'dateFinal' ] ) ? $_GET[ 'dateFinal' ] : null;
+				$month 	= isset( $_GET[ 'month' ] ) ? $_GET[ 'month' ] : null;
+				$year 	= isset( $_GET[ 'year' ] ) ? $_GET[ 'year' ] : null;
 
                 if ( !is_null( $id ) ) {
                     // GET /index.php?comando=transactions&id={1}
@@ -64,7 +83,11 @@ class API {
                     // GET index.php?comando=transactions&dateInicio={fecha de inicio}&dateFinal={fecha final}
                         $result = $this->transactionController->getTransactionsByDateRange( $dateInicio, $dateFinal );
                         echo $result;
-                    } else {
+                } elseif ( !is_null( $month ) && !is_null( $year ) ) {
+					// GET /index.php?comando=transactions&month=06&year=2023
+					$result = $this->transactionController->getTotalMonth($year, $month);
+					echo $result;
+				} else {
                         // GET /index.php?comando=transactions
                         $result = $this->transactionController->getAllTransactions();
                         echo $result;
@@ -97,7 +120,7 @@ class API {
                     $transactionId = $data[ 'id' ];
                     $result = $this->transactionController->deleteTransaction( $transactionId );
                     echo $result;
-            }
+            }	
 
                 break;
 

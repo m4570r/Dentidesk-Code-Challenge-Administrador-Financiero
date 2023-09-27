@@ -492,4 +492,42 @@ class TransactionController
 		}
 	}
 
+	// Función para obtener el total del mes
+	public function getTotalMonth($year, $month)
+	{
+		try {
+			// Preparar la consulta SQL para obtener el total del mes
+			$query = "SELECT * FROM monthly_profit WHERE year = :year AND month = :month";
+
+			// Preparar la declaración PDO
+			$statement = $this->db->prepare($query);
+
+			// Bind de los parámetros
+			$statement->bindParam(":year", $year, PDO::PARAM_INT);
+			$statement->bindParam(":month", $month, PDO::PARAM_INT);
+
+			// Ejecutar la consulta
+			$statement->execute();
+
+			// Obtener el total del mes como un arreglo asociativo
+			$monthlyTotal = $statement->fetch(PDO::FETCH_ASSOC);
+
+			// Verificar si se encontró el total del mes
+			if (!$monthlyTotal) {
+				// Si no se encontró el total del mes, puedes devolver un mensaje personalizado o un arreglo vacío
+				$response = [
+					"message" => "No se encontró el total del mes para el año $year y mes $month."
+				];
+			} else {
+				// Si se encontró el total del mes, puedes devolverlo en formato JSON
+				$response = $monthlyTotal;
+			}
+
+			return json_encode($response, JSON_PRETTY_PRINT);
+		} catch (PDOException $e) {
+			// En caso de error en la consulta, puedes manejarlo aquí
+			return json_encode(["error" => $e->getMessage()], JSON_PRETTY_PRINT);
+		}
+	}
+
 }

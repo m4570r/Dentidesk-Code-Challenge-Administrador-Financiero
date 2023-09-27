@@ -1,3 +1,6 @@
+/* En tu archivo index.css */
+@import "~bootstrap/dist/css/bootstrap.css";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +13,110 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h2, .h2 {
+    margin-top: 8%;
+}
+
+.texto-contenedor {
+  text-align: justify;
+}
+
+.texto-margen {
+    margin-top: 8%;
+}
+
+.texto-final-marca {
+  text-align: center; /* Centra el texto horizontalmente */
+  font-size: 24px; /* Aumenta el tamaño del texto (ajusta el valor según tus preferencias) */
+  font-weight: bold; /* Hace que el texto sea negrita */
+  display: block; /* Establece como bloque (puede no ser necesario, depende del contexto) */
+  margin: 0 auto; /* Centra horizontalmente si el elemento es un bloque (display: block) */
+  padding: 20px; /* Agrega relleno para separar el texto de otros elementos (ajusta según sea necesario) */
+}
+
+
+/* Estilos para la versión de escritorio */
+.navbar {
+  background: #ff8d01;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav_logo {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 15px;
+  color: white;
+}
+
+.nav_items a {
+  margin: 15px;
+  color: white;
+  position: relative;
+  text-decoration: none;
+}
+
+.nav_toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Estilos para la versión móvil (menú hamburguesa) */
+  .nav_items {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: rgb(255, 128, 0);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: -webkit-fill-available;
+    transform: translateX(-130%);
+    transition: 0.3s ease all;
+  }
+
+  .nav_items.open {
+    transform: translateX(0) !important;
+  }
+
+  .nav_toggle {
+    display: flex !important;
+    flex-direction: column;
+    margin: 15px;
+  }
+
+  .nav_toggle span {
+    width: 30px;
+    height: 4px;
+    background: white;
+    margin-bottom: 5px;
+    border-radius: 2px;
+    transform-origin: 5px 0px;
+    transition: all 0.2s linear;
+  }
+
+  .nav_toggle.open > span {
+    transform: rotate(45deg) translate(0px, 0px);
+  }
+
+  .nav_toggle.open > span:nth-child(2) {
+    display: none;
+  }
+
+  .nav_toggle.open > span:nth-child(3) {
+    transform: rotate(-45deg) translate(-5px, 1px);
+  }
+}
+
+/* Evitar desplazamiento de página al hacer dragdown */
+body {
+  overscroll-behavior-y: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
