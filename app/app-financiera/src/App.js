@@ -5,11 +5,12 @@ import FormularioIngresoTransacciones from './components/FormularioIngresoTransa
 import MenuNavegacion from './components/MenuNavegacion/MenuNavegacion';
 import Inicio from './components/Inicio/Inicio';
 import HistorialIngresos from './components/HistorialIngresos/HistorialIngresos';
-import SaldoTotal from './components/SaldoTotal/SaldoTotal'; // Ruta relativa al archivo SaldoTotal.js
+import SaldoTotal from './components/SaldoTotal/SaldoTotal';
 import './index.css';
 
 function App() {
   const [vista, setVista] = useState('inicio');
+  const [transactions, setTransactions] = useState([]);
 
   const mostrarInicio = () => {
     setVista('inicio');
@@ -23,6 +24,12 @@ function App() {
     setVista('historial');
   };
 
+  const handleTransactionAdded = () => {
+    // Esta función se llama cuando se agrega una nueva transacción
+    // Actualiza el estado de las transacciones
+    setTransactions((prevTransactions) => [...prevTransactions, {}]); // Puedes utilizar un objeto vacío o cualquier otro valor
+  };
+
   return (
     <div className="container">
       <MenuNavegacion
@@ -33,24 +40,17 @@ function App() {
       {vista === 'inicio' && <Inicio />}
       {vista === 'transacciones' && (
         <div>
-
-                <TotalGanadoEnMes />
-
-                <TotalGastadoEnMes />
-
-                <SaldoTotal />
-
-          <FormularioIngresoTransacciones />
+          <TotalGanadoEnMes transactions={transactions} />
+          <TotalGastadoEnMes transactions={transactions} />
+          <SaldoTotal transactions={transactions} />
+          <FormularioIngresoTransacciones onTransactionAdded={handleTransactionAdded} />
         </div>
       )}
       {vista === 'historial' && <HistorialIngresos />}
       {vista !== 'inicio' && vista !== 'transacciones' && vista !== 'historial' && (
         <div>
-                <TotalGanadoEnMes />
-
-                <TotalGastadoEnMes />
-
-                <SaldoTotal />
+          <TotalGanadoEnMes transactions={transactions} />
+          <TotalGastadoEnMes transactions={transactions} />
           <p>¡Vista no encontrada!</p>
         </div>
       )}

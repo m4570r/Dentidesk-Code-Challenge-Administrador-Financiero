@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-function SaldoTotal() {
+function SaldoTotal({ transactions }) {
   const [saldoTotal, setSaldoTotal] = useState(null);
   const [loading, setLoading] = useState(true); // Estado para controlar la carga inicial
-  const [transactions, setTransactions] = useState([]);
 
   const obtenerMesYAnioActual = () => {
     const fechaActual = new Date();
@@ -12,7 +11,7 @@ function SaldoTotal() {
     return { mesActual, anioActual };
   };
 
-  const actualizarTotales = async () => {
+  const actualizarSaldoTotal = async () => {
     const { mesActual, anioActual } = obtenerMesYAnioActual();
     const endpoint = `http://192.168.1.139/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&month=${mesActual}&year=${anioActual}`;
 
@@ -43,7 +42,7 @@ function SaldoTotal() {
   };
 
   useEffect(() => {
-    actualizarTotales();
+    actualizarSaldoTotal();
   }, [transactions]); // Agregar 'transactions' como dependencia
 
   if (loading) {

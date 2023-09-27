@@ -66,7 +66,7 @@ function FormularioIngresoTransacciones({ onTransactionAdded }) {
   return (
     <div className="formulario-ingreso">
       <h3 className="centered-heading">Ingreso de Transacciones</h3>
-      <form className="formulario">
+      <form onSubmit={handleSubmit} className="formulario">
         <div className="form-group">
           <label>Descripción:</label>
           <input
@@ -99,7 +99,7 @@ function FormularioIngresoTransacciones({ onTransactionAdded }) {
             <option value="egreso">Egreso</option>
           </select>
         </div>
-        <button type="button" onClick={handleSubmit} className="submit-button">
+        <button type="submit" className="submit-button">
           Guardar
         </button>
       </form>

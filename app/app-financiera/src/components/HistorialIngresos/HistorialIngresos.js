@@ -39,7 +39,7 @@ function HistorialTransacciones() {
         id: transaction.id,
       };
 
-      fetch(`http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&deleteTransactions`, {
+      fetch(`http://192.168.1.139/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&deleteTransactions`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

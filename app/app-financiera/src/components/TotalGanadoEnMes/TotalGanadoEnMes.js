@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function TotalGanadoEnMes() {
+function TotalGanadoEnMes({ transactions }) {
   const [totalIncome, setTotalIncome] = useState(null);
-  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     // Obtener el mes y año actual
