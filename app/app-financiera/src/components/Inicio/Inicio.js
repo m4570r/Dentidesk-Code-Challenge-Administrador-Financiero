@@ -8,7 +8,7 @@ function Inicio() {
       <p>Somos una herramienta poderosa que te acompañará en tu viaje hacia el éxito financiero, proporcionándote las herramientas necesarias para tomar decisiones informadas y alcanzar tus metas económicas. Creemos en el poder de la planificación financiera y la transparencia, y estamos comprometidos a contribuir al desarrollo integral de tu bienestar económico.</p>
       <p>Únete a nosotros en este viaje financiero, donde cada día te acercamos un paso más a tus sueños y proyectos de vida. Descubre la comodidad de tener toda tu contabilidad y gastos al alcance de tu mano, respaldados por una aplicación diseñada con pasión y dedicación.</p>
       <p>¡Bienvenido a una nueva era de control financiero, bienvenido a la Unica, la de siempre nuestra</p>
-      <p className="texto-final-marca">Apliaccion Financiera!</p>
+      <p className="texto-final-marca">Aplicación Financiera!</p>
     </div>
   );
 }
