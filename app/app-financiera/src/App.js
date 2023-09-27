@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import TotalGanadoEnMes from './components/TotalGanadoEnMes/TotalGanadoEnMes';
+import TotalGastadoEnMes from './components/TotalGastadoEnMes/TotalGastadoEnMes';
 import FormularioIngresoTransacciones from './components/FormularioIngresoTransacciones/FormularioIngresoTransacciones';
 import MenuNavegacion from './components/MenuNavegacion/MenuNavegacion';
 import Inicio from './components/Inicio/Inicio';
 import HistorialIngresos from './components/HistorialIngresos/HistorialIngresos';
+import SaldoTotal from './components/SaldoTotal/SaldoTotal'; // Ruta relativa al archivo SaldoTotal.js
 import './index.css';
 
 function App() {
@@ -31,13 +33,24 @@ function App() {
       {vista === 'inicio' && <Inicio />}
       {vista === 'transacciones' && (
         <div>
-          <TotalGanadoEnMes />
+
+                <TotalGanadoEnMes />
+
+                <TotalGastadoEnMes />
+
+                <SaldoTotal />
+
           <FormularioIngresoTransacciones />
         </div>
       )}
       {vista === 'historial' && <HistorialIngresos />}
       {vista !== 'inicio' && vista !== 'transacciones' && vista !== 'historial' && (
         <div>
+                <TotalGanadoEnMes />
+
+                <TotalGastadoEnMes />
+
+                <SaldoTotal />
           <p>¡Vista no encontrada!</p>
         </div>
       )}

@@ -2,6 +2,10 @@
 // Establecer las cabeceras CORS para permitir el acceso desde cualquier origen
 header("Access-Control-Allow-Origin: *");
 
+// Antes de enviar cualquier respuesta, agrega estos encabezados CORS para permitir solicitudes desde localhost:
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
 // Opcionalmente, puedes especificar métodos HTTP permitidos
 // header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 

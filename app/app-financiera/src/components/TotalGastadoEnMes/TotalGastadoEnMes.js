@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-function TotalGanadoEnMes() {
-  const [totalIncome, setTotalIncome] = useState(null);
+function TotalGastadoEnMes() {
+  const [totalExpense, setTotalExpense] = useState(null);
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
@@ -17,27 +17,28 @@ function TotalGanadoEnMes() {
     fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        // Obtener el valor de total_income del JSON
-        const totalIncomeValue = parseFloat(data.total_income); // Parsear el valor a número
+        // Obtener el valor de total_expense del JSON y parsearlo a número
+        const totalExpenseValue = parseFloat(data.total_expense);
 
-        // Verificar si el valor es un número válido antes de mostrarlo
-        if (!isNaN(totalIncomeValue)) {
-          setTotalIncome(totalIncomeValue);
+        // Verificar si el valor es un número válido
+        if (!isNaN(totalExpenseValue)) {
+          // Si es válido, actualizar el estado con el valor obtenido
+          setTotalExpense(totalExpenseValue);
         } else {
-          console.error('El valor de ingresos no es un número válido');
-          setTotalIncome(0); // Establecer el valor en 0 en caso de valor no válido
+          // Si no es válido, establecer el valor en 0
+          setTotalExpense(0);
         }
       })
       .catch((error) => {
-        console.error('Error al obtener el total de ingresos:', error);
+        console.error('Error al obtener el total gastado:', error);
       });
   }, [transactions]); // Agregar 'transactions' como dependencia
 
   return (
-    <div className="total-ganado total-ganado-verde">
-      <h5>Ganado en el Mes: ${totalIncome !== null ? totalIncome : '0'}</h5>
+    <div className="total-ganado total-ganado-rojo">
+      <h5>Gastado en el Mes: ${totalExpense !== null ? totalExpense : '0'}</h5>
     </div>
   );
 }
 
-export default TotalGanadoEnMes;
+export default TotalGastadoEnMes;
