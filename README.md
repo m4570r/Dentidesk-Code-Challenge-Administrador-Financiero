@@ -2,8 +2,6 @@
 
 Este proyecto se creó como parte del proceso de postulación a Dentidesk y se centra en la simplicidad, la claridad en el código y el cumplimiento de los requerimientos establecidos.
 
-La aplicación permite a los usuarios registrar sus ingresos y egresos, calcular el total de ganancias para el mes y visualizar sus transacciones de manera organizada.
-
 ## Desarrollo del Proyecto simple Administración Financiera Simple
 
 ### Comprender los Requerimientos
@@ -69,54 +67,53 @@ CREATE TABLE transactions (
 
 - **Buscar todos los registros:**
 ```
-/api/v1/2023/index.php?comando=transactions
+GET /api/v1/2023/index.php?comando=transactions
 ```
 - **Buscar registros por id:**
 ```  
-/api/v1/2023/index.php?comando=transactions&id={id}
+GET /api/v1/2023/index.php?comando=transactions&id={id}
 ```
 - **Buscar registros por descripción:**
 ```
-/api/v1/2023/index.php?comando=transactions&description={descripcion}
+GET /api/v1/2023/index.php?comando=transactions&description={descripcion}
 ```
 - **Buscar registros por monto:**
 ```
-/api/v1/2023/index.php?comando=transactions&amount={monto a buscar}
+GET /api/v1/2023/index.php?comando=transactions&amount={monto a buscar}
 ```
 - **Buscar registros por tipo:**
 ```
-/api/v1/2023/index.php?comando=transactions&type={tipo a buscar}
+GET /api/v1/2023/index.php?comando=transactions&type={tipo a buscar}
 ```
 - **Buscar registros por rango de fechas:**
 ```
-/api/v1/2023/index.php?comando=transactions&dateInicio={fechaInicio}&dateFinal={fechaFinal}
+GET /api/v1/2023/index.php?comando=transactions&dateInicio={fechaInicio}&dateFinal={fechaFinal}
 ```
 - **Mostrar el total del mes:**
 ```
-/api/v1/2023/index.php?comando=transactions&month=9&year=2023
+GET /api/v1/2023/index.php?comando=transactions&month=9&year=2023
 ```
 - **Agregar un nuevo registro:**
 ```
-/api/v1/2023/index.php?comando=transactions&addTransactions
+POST /api/v1/2023/index.php?comando=transactions&addTransactions
 ```
-
-
 Payload:
-
-json
-Copy code
+```json
 {
     "descripcion":"Sueldo",
     "monto":2500000,
     "tipo":"ingreso",
     "date":"2023-09-01"
 }
-Actualizar registros: http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&updateTransactions
+```
+
+- **Actualizar registros**
+```
+PUT /api/v1/2023/index.php?comando=transactions&updateTransactions
+```
 
 Payload:
-
-json
-Copy code
+```json
 {
     "id":19,
     "descripcion":"Sueldo",
@@ -124,34 +121,41 @@ Copy code
     "tipo":"ingreso",
     "date":"2023-09-01"
 }
-Eliminar registros: http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&deleteTransactions
+```
+
+- **Eliminar registros**
+```
+ DELETE /api/v1/2023/index.php?comando=transactions&deleteTransactions
+```
 
 Payload:
-
-json
-Copy code
+```json
 {
     "id":19
 }
-Desarrollo de la API
-(Descripción del desarrollo de la API en este espacio)
+```
+
+# Desarrollo de la API
+La aplicación permite a los usuarios registrar sus ingresos y egresos, calcular el total de ganancias para el mes y visualizar sus transacciones de manera organizada.
 
 Desarrollo de la APP
 Tecnológica: React
 
-Comando para crear la aplicación
-bash
-Copy code
+- **Comando para crear la aplicación**
+```
 npx create-react-app app-financiera
-Agregar Bootstrap al proyecto
-bash
-Copy code
-npm install react-bootstrap Bootstrap
-Generar componentes
-Utilizar el siguiente comando para generar los componentes necesarios:
+```
 
-bash
-Copy code
+- **Agregar Bootstrap al proyecto**
+```
+npm install react-bootstrap Bootstrap
+```
+
+- **Generar componentes**
+Utilizar los siguientes comandos para generar los componentes necesarios:
+en mi caso genere los siguientes componentes Inicio, MenuNavegacion, TotalGeneradoEnMEs, TotalGastosEnMes, TotalGanadoEnElMes, FormularioIngresoTransacciones e HistorialIngresos
+
+```
 npx generate-react-cli component TotalGanadoEnMes
 npx generate-react-cli component FormularioIngresoTransacciones
 npx generate-react-cli component MenuNavegacion
@@ -159,32 +163,43 @@ npx generate-react-cli component Inicio
 npx generate-react-cli component HistorialIngresos
 npx generate-react-cli component TotalGastadoEnMes
 npx generate-react-cli component SaldoTotal
-Docker
-Para construir la imagen de Docker y ejecutar el contenedor:
+```
 
-bash
-Copy code
+- **Docker**
+Para construir la imagen de Docker y ejecutar el contenedor utiliza los siguientes comandos:
+
+- **Este comando sirve para crear la imagen**
+```
 docker build -t tu-imagen .
+```
+- **Redireccion de puertos**
+```
 docker run -d -p 80:80 --name tu-contenedor tu-imagen
-Control de Versiones (Git)
+```
+
+- **Control de Versiones (Git)**
 A continuación, se describen los comandos básicos de Git para el control de versiones:
 
-bash
-Copy code
 # Añadir todos los archivos modificados o nuevos al área de preparación (staging)
+```
 git add .
-
+```
 # Realizar el commit con un mensaje descriptivo de tus cambios
+```
 git commit -m "Mensaje descriptivo de tus cambios aquí"
-
+```
 # Asegurarse de estar en la rama correcta (por ejemplo, 'main' o 'master')
+```
 git checkout main
-
+```
 # Obtener los cambios más recientes del repositorio remoto
+```
 git pull origin main
-
+```
 # Empujar los cambios al repositorio remoto en GitHub
+```
 git push origin main  # Cambia 'main' por el nombre de tu
+```
 
 ### Características Destacadas:
 
