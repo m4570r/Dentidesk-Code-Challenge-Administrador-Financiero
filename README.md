@@ -63,6 +63,7 @@ CREATE TABLE transactions (
     type ENUM('ingreso', 'egreso') NOT NULL,
     date DATE NOT NULL
 );
+```
 
 ## EndPoints
 
