@@ -163,8 +163,7 @@ npx generate-react-cli component TotalGastadoEnMes
 npx generate-react-cli component SaldoTotal
 ```
 
-- **Docker**
-Para construir la imagen de Docker y ejecutar el contenedor utiliza los siguientes comandos:
+- **Para construir la imagen de Docker y ejecutar el contenedor utiliza los siguientes comandos**
 
 - **Este comando sirve para crear la imagen**
 ```
