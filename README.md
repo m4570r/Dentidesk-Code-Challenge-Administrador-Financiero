@@ -2,7 +2,7 @@
 
 Este proyecto se creó como parte del proceso de postulación a Dentidesk y se centra en la simplicidad, la claridad en el código y el cumplimiento de los requerimientos establecidos.
 
-## Desarrollo del Proyecto simple Administración Financiera Simple
+## Desarrollo del Proyecto Simple Administración Financiera 
 
 ### Comprender los Requerimientos
 
