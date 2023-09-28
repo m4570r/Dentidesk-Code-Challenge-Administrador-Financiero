@@ -67,28 +67,28 @@ CREATE TABLE transactions (
 ## EndPoints
 
 - **Buscar todos los registros:**
-http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions
+http://localhost/api/v1/2023/index.php?comando=transactions
 
 - **Buscar registros por id:**
-http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&id={id}
+http://localhost/api/v1/2023/index.php?comando=transactions&id={id}
 
 - **Buscar registros por descripción:**
-http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&description={descripcion}
+http://localhost/api/v1/2023/index.php?comando=transactions&description={descripcion}
 
 - **Buscar registros por monto:**
-[http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&amount={monto a buscar}](http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&amount={monto a buscar})
+http://localhost/api/v1/2023/index.php?comando=transactions&amount={monto a buscar}
 
 - **Buscar registros por tipo:**
-[http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&type={tipo a buscar}](http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&type={tipo a buscar})
+http://localhost/api/v1/2023/index.php?comando=transactions&type={tipo a buscar}
 
 - **Buscar registros por rango de fechas:**
-[http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&dateInicio={fecha de inicio}&dateFinal={fecha final}](http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&dateInicio={fecha de inicio}&dateFinal={fecha final})
+http://localhost/api/v1/2023/index.php?comando=transactions&dateInicio={fechaInicio}&dateFinal={fechaFinal}
 
 - **Mostrar el total del mes:**
-http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&month=9&year=2023
+http://localhost/api/v1/2023/index.php?comando=transactions&month=9&year=2023
 
 - **Agregar un nuevo registro:**
-http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&addTransactions
+http://localhost/api/v1/2023/index.php?comando=transactions&addTransactions
 
 Payload:
 
