@@ -10,7 +10,7 @@ function TotalGanadoEnMes({ transactions }) {
     const currentYear = currentDate.getFullYear();
 
     // Construir la URL con los valores de mes y año actuales
-    const apiUrl = `http://192.168.1.139/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&month=${currentMonth}&year=${currentYear}`;
+    const apiUrl = `http://192.168.1.139:8080/api/index.php?comando=transactions&month=${currentMonth}&year=${currentYear}`;
 
     // Realizar la solicitud GET
     fetch(apiUrl)

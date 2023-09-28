@@ -1,9 +1,9 @@
 <?php
 
-$host = 'localhost';
+$host = '192.168.1.139';
 $dbname = 'codechallenge';
-$username = 'root';
-$password = '';
+$username = 'docker';
+$password = '171279879';
 
 try {
     $db = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

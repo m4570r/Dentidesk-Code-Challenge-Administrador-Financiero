@@ -35,7 +35,7 @@ function FormularioIngresoTransacciones({ onTransactionAdded }) {
     try {
       // Realizar la solicitud POST al endpoint para agregar transacciones
       const response = await fetch(
-        'http://192.168.1.139/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&addTransactions',
+        'http://192.168.1.139:8080/api/index.php?comando=transactions&addTransactions',
         {
           method: 'POST',
           headers: {

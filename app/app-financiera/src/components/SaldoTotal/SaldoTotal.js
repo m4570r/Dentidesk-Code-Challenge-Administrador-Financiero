@@ -13,7 +13,7 @@ function SaldoTotal({ transactions }) {
 
   const actualizarSaldoTotal = async () => {
     const { mesActual, anioActual } = obtenerMesYAnioActual();
-    const endpoint = `http://192.168.1.139/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&month=${mesActual}&year=${anioActual}`;
+    const endpoint = `http://192.168.1.139:8080/api/index.php?comando=transactions&month=${mesActual}&year=${anioActual}`;
 
     try {
       const response = await fetch(endpoint);

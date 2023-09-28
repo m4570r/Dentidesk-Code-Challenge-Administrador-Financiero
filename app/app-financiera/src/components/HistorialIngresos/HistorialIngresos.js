@@ -11,7 +11,7 @@ function HistorialTransacciones() {
   const [updateTrigger, setUpdateTrigger] = useState(0);
 
   useEffect(() => {
-    fetch('http://192.168.1.139/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions')
+    fetch('http://192.168.1.139:8080/api/index.php?comando=transactions')
       .then((response) => response.json())
       .then((data) => setTransactions(data))
       .catch((error) => console.error('Error al obtener transacciones:', error));
@@ -39,7 +39,7 @@ function HistorialTransacciones() {
         id: transaction.id,
       };
 
-      fetch(`http://192.168.1.139/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&deleteTransactions`, {
+      fetch(`http://192.168.1.139:8080/api/index.php?comando=transactions&deleteTransactions`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ function HistorialTransacciones() {
     const confirmEdit = window.confirm('¿Realmente desea editar esta transacción?');
   
     if (confirmEdit) {
-      fetch(`http://192.168.1.139/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&updateTransactions`, {
+      fetch(`http://192.168.1.139:8080/api/index.php?comando=transactions&updateTransactions`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
