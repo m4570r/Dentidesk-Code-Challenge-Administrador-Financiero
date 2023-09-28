@@ -68,28 +68,37 @@ CREATE TABLE transactions (
 ## EndPoints
 
 - **Buscar todos los registros:**
-  [http://localhost/api/v1/2023/index.php?comando=transactions](http://localhost/api/v1/2023/index.php?comando=transactions)
-
+```
+/api/v1/2023/index.php?comando=transactions
+```
 - **Buscar registros por id:**
-  [http://localhost/api/v1/2023/index.php?comando=transactions&id={id}](http://localhost/api/v1/2023/index.php?comando=transactions&id={id})
-
+```  
+/api/v1/2023/index.php?comando=transactions&id={id}
+```
 - **Buscar registros por descripción:**
-  [http://localhost/api/v1/2023/index.php?comando=transactions&description={descripcion}](http://localhost/api/v1/2023/index.php?comando=transactions&description={descripcion})
-
+```
+/api/v1/2023/index.php?comando=transactions&description={descripcion}
+```
 - **Buscar registros por monto:**
-  [http://localhost/api/v1/2023/index.php?comando=transactions&amount={monto a buscar}](http://localhost/api/v1/2023/index.php?comando=transactions&amount={monto a buscar})
-
+```
+/api/v1/2023/index.php?comando=transactions&amount={monto a buscar}
+```
 - **Buscar registros por tipo:**
-  [http://localhost/api/v1/2023/index.php?comando=transactions&type={tipo a buscar}](http://localhost/api/v1/2023/index.php?comando=transactions&type={tipo a buscar})
-
+```
+/api/v1/2023/index.php?comando=transactions&type={tipo a buscar}
+```
 - **Buscar registros por rango de fechas:**
-  [http://localhost/api/v1/2023/index.php?comando=transactions&dateInicio={fechaInicio}&dateFinal={fechaFinal}](http://localhost/api/v1/2023/index.php?comando=transactions&dateInicio={fechaInicio}&dateFinal={fechaFinal})
-
+```
+/api/v1/2023/index.php?comando=transactions&dateInicio={fechaInicio}&dateFinal={fechaFinal}
+```
 - **Mostrar el total del mes:**
-  [http://localhost/api/v1/2023/index.php?comando=transactions&month=9&year=2023](http://localhost/api/v1/2023/index.php?comando=transactions&month=9&year=2023)
-
+```
+/api/v1/2023/index.php?comando=transactions&month=9&year=2023
+```
 - **Agregar un nuevo registro:**
-  [http://localhost/api/v1/2023/index.php?comando=transactions&addTransactions](http://localhost/api/v1/2023/index.php?comando=transactions&addTransactions)
+```
+/api/v1/2023/index.php?comando=transactions&addTransactions
+```
 
 
 Payload:
