@@ -63,7 +63,8 @@ CREATE TABLE transactions (
     type ENUM('ingreso', 'egreso') NOT NULL,
     date DATE NOT NULL
 );
-EndPoints
+
+# EndPoints
 Buscar todos los registros: http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions
 
 Buscar registros por id: http://localhost/CodeChallenge/Dentidesk-Code-Challenge-Administrador-Financiero/api/v1/2023/index.php?comando=transactions&id={id}
