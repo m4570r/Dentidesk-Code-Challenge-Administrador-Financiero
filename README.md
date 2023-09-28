@@ -96,9 +96,9 @@ GET /api/v1/2023/index.php?comando=transactions&month=9&year=2023
 - **Agregar un nuevo registro:**
 ```
 POST /api/v1/2023/index.php?comando=transactions&addTransactions
-```
+
 Payload:
-```json
+
 {
     "descripcion":"Sueldo",
     "monto":2500000,
@@ -110,10 +110,9 @@ Payload:
 - **Actualizar registros**
 ```
 PUT /api/v1/2023/index.php?comando=transactions&updateTransactions
-```
 
 Payload:
-```json
+
 {
     "id":19,
     "descripcion":"Sueldo",
@@ -126,10 +125,9 @@ Payload:
 - **Eliminar registros**
 ```
  DELETE /api/v1/2023/index.php?comando=transactions&deleteTransactions
-```
 
 Payload:
-```json
+
 {
     "id":19
 }
