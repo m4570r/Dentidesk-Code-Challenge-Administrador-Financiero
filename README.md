@@ -2,7 +2,7 @@
 
 Este proyecto se creó como parte del proceso de postulación a Dentidesk y se centra en la simplicidad, la claridad en el código y el cumplimiento de los requerimientos establecidos.
 
-Este repositorio contiene el código fuente para el Desafío Code Challenge de Dentidesk, una aplicación simple de administración financiera. La aplicación permite a los usuarios registrar sus ingresos y egresos, calcular el total de ganancias para el mes y visualizar sus transacciones de manera organizada.
+La aplicación permite a los usuarios registrar sus ingresos y egresos, calcular el total de ganancias para el mes y visualizar sus transacciones de manera organizada.
 
 ## Desarrollo del Proyecto simple Administración Financiera Simple
 
